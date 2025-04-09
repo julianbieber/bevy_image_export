@@ -302,15 +302,6 @@ impl Plugin for ImageExportPlugin {
 
         let render_app = app.sub_app_mut(RenderApp);
 
-        render_app
-            .insert_resource(self.threads.clone())
-            .add_systems(
-                Render,
-                save_buffer_to_disk
-                    .after(RenderSet::Render)
-                    .before(RenderSet::Cleanup),
-            );
-
         let mut graph = render_app
             .world_mut()
             .get_resource_mut::<RenderGraph>()
